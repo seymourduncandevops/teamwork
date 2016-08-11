@@ -174,6 +174,19 @@ class Project extends AbstractObject {
     }
 
     /**
+     * Tasks
+     * GET /projects/{project_id}/tasks.json
+     *
+     * @return [type] [description]
+     */
+    public function tasks($args = null)
+    {
+        $this->areArgumentsValid($args, ['filter', 'page', 'pageSize', 'startdate', 'enddate', 'updatedAfterDate', 'completedAfterDate', 'completedBeforeDate', 'showDeleted', 'includeCompletedTasks', 'includeCompletedSubtasks', 'creator-ids', 'include', 'responsible-party-ids', 'sort', 'getSubTasks', 'nestSubTasks', 'getFiles', 'dataSet', 'includeToday', 'ignore-start-date']);
+
+        return $this->client->get("$this->endpoint/$this->id/tasks", $args)->response();
+    }
+
+    /**
      * Emailaddresses
      * GET /projects/{project_id}/emailaddress.json
      *
